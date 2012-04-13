@@ -21,9 +21,9 @@ class LanguagePack::Octopress < LanguagePack::Jekyll
 
   def generate_jekyll_site
     topic("Building Octopress site")
-    if File.read(".slugignore") =~ /plugins|sass|source/
-      error ".slugignore contains #{$&}. Octopress generation will fail."
-    end
+    #if File.read(".slugignore") =~ /plugins|sass|source/
+    #  error ".slugignore contains #{$&}. Octopress generation will fail."
+    #end
     pipe("env PATH=$PATH git init")
     pipe("env PATH=$PATH git remote add upstream git://github.com/austenito/curriculum.git")
     pipe("env PATH=$PATH git pull upstream master")
