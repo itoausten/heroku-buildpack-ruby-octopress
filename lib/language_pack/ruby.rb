@@ -372,8 +372,9 @@ params = CGI.parse(uri.query || "")
   # @param [String] name of the gem in question
   # @return [String, nil] if it finds the gem, it will return the line from bundle show or nil if nothing is found.
   def gem_is_bundled?(gem)
-    @bundler_gems ||= lockfile_parser.specs.map(&:name)
-    @bundler_gems.include?(gem)
+    #@bundler_gems ||= lockfile_parser.specs.map(&:name)
+    #@bundler_gems.include?(gem)
+    false
   end
 
   # setup the lockfile parser
