@@ -1,5 +1,6 @@
 require "fileutils"
 require "tmpdir"
+require 'yaml'
 
 S3_BUCKET_NAME  = "heroku-buildpack-ruby"
 VENDOR_URL      = "https://s3.amazonaws.com/#{S3_BUCKET_NAME}"
@@ -220,4 +221,14 @@ task "libffi:install", :version do |t, args|
       s3_upload(tmpdir, name)
     end
   end
+end
+
+desc "Find and replace git urls"
+task :setup do
+  file_name = "lib/language_pack/octopress.rb"
+  config = YAML.load_file("config.yml")
+  text = File.read(file_name)
+  text.gsub!(/##git_url##/, config["git_url"])
+  text.gsub!(/##git_branch##/, config["git_branch"])
+  File.open(file_name, "w") {|file| file.write(text) }
 end
