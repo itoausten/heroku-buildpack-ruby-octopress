@@ -7,7 +7,8 @@ class LanguagePack::Jekyll < LanguagePack::Rack
   # detects if this is a valid Jekyll site by seeing if "_config.yml" exists
   # @return [Boolean] true if it's a Jekyll app
   def self.use?
-    super && File.exist?("_config.yml")
+    #super && File.exist?("_config.yml")
+    true
   end
 
   def name
