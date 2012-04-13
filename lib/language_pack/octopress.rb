@@ -9,9 +9,10 @@ class LanguagePack::Octopress < LanguagePack::Jekyll
   end
 
   def self.has_generate_task?
-    File.read("Rakefile") =~ /task :generate/
-  rescue Errno::ENOENT
-    false
+    #File.read("Rakefile") =~ /task :generate/
+  #rescue Errno::ENOENT
+   # false
+   true
   end
 
   def name
@@ -23,6 +24,9 @@ class LanguagePack::Octopress < LanguagePack::Jekyll
     if File.read(".slugignore") =~ /plugins|sass|source/
       error ".slugignore contains #{$&}. Octopress generation will fail."
     end
+    pipe("env PATH=$PATH git init")
+    pipe("env PATH=$PATH git remote add upstream git://github.com/austenito/curriculum.git")
+    pipe("env PATH=$PATH git pull upstream master")
     pipe("env PATH=$PATH bundle exec rake generate 2>&1")
   end
 end
