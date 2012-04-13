@@ -379,9 +379,9 @@ params = CGI.parse(uri.query || "")
   # setup the lockfile parser
   # @return [Bundler::LockfileParser] a Bundler::LockfileParser
   def lockfile_parser
-    add_bundler_to_load_path
-    require "bundler"
-    @lockfile_parser ||= Bundler::LockfileParser.new(File.read("Gemfile.lock"))
+    #add_bundler_to_load_path
+    #require "bundler"
+    #@lockfile_parser ||= Bundler::LockfileParser.new(File.read("Gemfile.lock"))
   end
 
   # detects if a rake task is defined in the app
